@@ -3,14 +3,30 @@ import {
 	Container,
 	Navbar,
 	Nav,
-	Badge,
 	NavDropdown,
 } from 'react-bootstrap';
-import { FaShoppingBag, FaUser } from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
+import { logout } from '../context/authSlices.js';
+import { useLogoutMutation } from '../context/usersSlice.js';
 
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Navigation() {
+	const { userInfo } = useSelector(state => state.auth);
+	const [logoutApiCall] = useLogoutMutation();
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const logoutHandler = async () => {
+		try {
+			await logoutApiCall().unwrap();
+			dispatch(logout());
+			navigate('/login');
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	return (
 		<Navbar bg="light" expand="md">
 			<Container>
@@ -20,10 +36,33 @@ function Navigation() {
 					<Nav className="ms-auto">
 						<Nav.Link href="/cart">cart</Nav.Link>
 
-						<Nav.Link href="/login">
-							<FaUser />
-							login
-						</Nav.Link>
+						{userInfo ? (
+							<NavDropdown
+								className="ml-2"
+								title={userInfo.name}
+								id="username">
+								<Nav.Link href="/profile">profile</Nav.Link>
+								<Nav.Link onClick={logoutHandler}>
+									logout
+								</Nav.Link>
+							</NavDropdown>
+						) : (
+							<Nav.Link href="/login">
+								<FaUser />
+								login
+							</Nav.Link>
+						)}
+						{userInfo && userInfo.isAdmin && (
+							<NavDropdown title="Lists" id="adminMenu">
+								<Nav.Link href="/userslist">
+									userlist
+								</Nav.Link>
+
+								<Nav.Link href="/productListAdmin">
+									productlist
+								</Nav.Link>
+							</NavDropdown>
+						)}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

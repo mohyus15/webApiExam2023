@@ -16,7 +16,8 @@ const getAllUsers = async (req, res) => {
 const authUser = async (req, res) => {
 	const { email, password } = req.body;
 	const user = await User.findOne({ email });
-	const userId = user._id.toString();
+	const userId = req.body;
+	console.log(userId);
 	const match = await bcrypt.compare(
 		password,
 		user.password
