@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const MONGO_URL = process.env.MONGO_URL;
-mongoose.connection.once('open', () => {
+mongoose.connection.once('open', async () => {
 	console.log('MongoDB connection is ready');
 });
-mongoose.connection.on('erro', err => {
+mongoose.connection.on('erro', async err => {
 	console.error(`something went wrong ${err}`);
 });
 

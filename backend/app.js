@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const NODE_ENV = process.env.NODE;
 
 //manger roles
-//const productRouter = require('./routers/productRouter.js');
+const productRouter = require('./routers/productRouter.js');
 const userRouters = require('./routers/userRouters.js');
 
 const app = express();
@@ -26,7 +26,7 @@ app.use(express.json());
 
 app.use(bodyParser.json());
 
-//app.use('/api/products', productRouter);
+app.use('/api/products', productRouter);
 app.use('/api/users', userRouters);
 
 if (NODE_ENV === 'production') {

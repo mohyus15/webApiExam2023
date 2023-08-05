@@ -5,7 +5,7 @@ const {
 } = require('../midddelwars/jwtToken.js');
 
 const getAllUsers = async (req, res) => {
-	const users = await User.find({});
+	const users = await User.find();
 	try {
 		res.status(200).json(users);
 	} catch (error) {

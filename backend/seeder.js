@@ -14,7 +14,7 @@ const importData = async () => {
 
 		const createdUsers = await User.insertMany(seederUsers);
 
-		const adminUser = createdUsers[0].id;
+		const adminUser = createdUsers[0]._id;
 
 		const sampleProducts = seederProducts.map(product => {
 			return { ...product, user: adminUser };

@@ -2,7 +2,7 @@ const {
 	getProducts,
 	getProductsById,
 	createProduct,
-	createProductsReview,
+
 	deleteProduct,
 	getTopProducts,
 } = require('../controllers/productController.js');
@@ -13,14 +13,8 @@ const {
 } = require('../midddelwars/permission.js');
 
 const productRouter = express.Router();
-productRouter.post(
-	'/:id/review',
-	protect,
-	createProductsReview
-);
-productRouter.get('/top', getTopProducts);
-productRouter.post('/', protect, admin, createProduct);
+productRouter.post('/', createProduct);
 productRouter.get('/', getProducts);
 productRouter.get('/:id', getProductsById);
-productRouter.delete('/:id', protect, admin, deleteProduct);
+productRouter.delete('/:id', deleteProduct);
 module.exports = productRouter;

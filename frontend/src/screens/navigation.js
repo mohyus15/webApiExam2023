@@ -34,8 +34,6 @@ function Navigation() {
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="ms-auto">
-						<Nav.Link href="/cart">cart</Nav.Link>
-
 						{userInfo ? (
 							<NavDropdown
 								className="ml-2"
