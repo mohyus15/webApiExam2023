@@ -40,7 +40,7 @@ const deleteDashbort = async (req, res) => {
 };
 
 const getDashborts = async (req, res) => {
-	const Dashborts = await Dashbort.find();
+	const Dashborts = await Dashbort.find({});
 	res.status(200).json(Dashborts);
 };
 const updateDashbort = async (req, res) => {

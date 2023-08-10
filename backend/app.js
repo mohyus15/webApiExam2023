@@ -28,6 +28,7 @@ app.use(morgan('combined'));
 app.use('/api/users', userRouters);
 app.use('/api/darshbort', productRouter);
 app.use('/api/hours', hoursRouter);
+app.use(express.json());
 
 app.get('/*', (req, res) => {
 	res.sendFile(
@@ -36,3 +37,10 @@ app.get('/*', (req, res) => {
 });
 
 module.exports = app;
+
+/*
+
+
+app.use(
+	express.static(path.join(__dirname, '..', 'public'))
+);*/
