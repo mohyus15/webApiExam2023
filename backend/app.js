@@ -7,10 +7,7 @@ const cookieParser = require('cookie-parser');
 const NODE_ENV = process.env.NODE;
 
 //manger roles
-const {
-	productRouter,
-	hoursRouter,
-} = require('./routers/dashbordRouter.js');
+const productRouter = require('./routers/dashbordRouter.js');
 const userRouters = require('./routers/userRouters.js');
 
 const app = express();
@@ -24,23 +21,30 @@ app.use(express.json());
 app.use(
 	express.static(path.join(__dirname, '..', 'public'))
 );
+
 app.use(morgan('combined'));
 app.use('/api/users', userRouters);
 app.use('/api/darshbort', productRouter);
-app.use('/api/hours', hoursRouter);
+app.use('/api/hours', productRouter);
 app.use(express.json());
-
-app.get('/*', (req, res) => {
-	res.sendFile(
-		path.join(__dirname, '..', 'public', 'index.html')
+if (process.env.NODE_ENV === 'production') {
+	app.use(
+		express.static(path.join(__dirname, '/frontned/build'))
 	);
-});
+	app.get('/*', (req, res) => {
+		res.sendFile(
+			path.resolve(
+				__dirname,
+				'frontend',
+				'build',
+				'index.html'
+			)
+		);
+	});
+} else {
+	app.use('/', (req, res) => {
+		res.send('the server is running...');
+	});
+}
 
 module.exports = app;
-
-/*
-
-
-app.use(
-	express.static(path.join(__dirname, '..', 'public'))
-);*/

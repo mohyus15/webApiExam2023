@@ -24,6 +24,7 @@ const Department = () => {
 	const sendeToDatabase = async () => {
 		await createHours(hours).unwrap();
 		toast.success('you have log hours in ' + hours);
+		console.log(hours);
 	};
 
 	return (
@@ -39,7 +40,7 @@ const Department = () => {
 									key={pro._id}
 									className="bg bg-dark">
 									{currentUser === pro.user ? (
-										<Card className="my-2 p-5" md={3}>
+										<Card className="my-2 p-5">
 											<Card.Body>
 												<h4> department</h4>
 												<Col>{pro.deperment}</Col>

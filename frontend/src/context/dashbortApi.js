@@ -36,7 +36,7 @@ const dashbortApi = createApi({
 			createHours: builder.mutation({
 				query: data => {
 					return {
-						url: `${HOURS_URL}`,
+						url: `${HOURS_URL}/hours`,
 						method: 'POST',
 						body: data,
 					};

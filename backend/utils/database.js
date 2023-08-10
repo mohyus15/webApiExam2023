@@ -9,9 +9,7 @@ mongoose.connection.on('erro', async err => {
 });
 
 const mangoConnect = async () => {
-	await mongoose.connect(
-		'mongodb+srv://webandapi:webandapi@cluster0.rzbtnrs.mongodb.net/exam?retryWrites=true&w=majority'
-	);
+	await mongoose.connect(MONGO_URL);
 
 	mongoose.set('strictQuery', true);
 };

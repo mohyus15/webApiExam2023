@@ -12,8 +12,6 @@
     "frontend": "npm start --prefix frontend",
     "dev": "npm run backend & npm run frontend",
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
-    "deploy": "npm run build --prefix frontend && npm start --prefix backend",
-    "deploy-cluster": "npm run build --prefix frontend && npm run cluster --prefix backend",
     "data:import": "node backend/seeder.js",
     "data:remove": "node backend/seeder.js -d",
     "test": "npm test --prefix backend && npm test --prefix frontend"
