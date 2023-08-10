@@ -1,19 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
-import { productstApi } from '../context/productsApi.js';
-import authSliceReducer from '../context/authSlices.js';
+import { dashbortApi } from './dashbortApi.js';
+import authSliceReducer from './authSlices.js';
 import { userSlice } from './usersSlice.js';
 export const store = configureStore({
 	reducer: {
-		[productstApi.reducerPath]: productstApi.reducer,
+		[dashbortApi.reducerPath]: dashbortApi.reducer,
 		[userSlice.reducerPath]: userSlice.reducer,
-		//[orderSlice.reducerPath]: userSlice.reducer,
 		auth: authSliceReducer,
 	},
 	middleware: getDefaultMiddeleware =>
 		getDefaultMiddeleware()
-			.concat(productstApi.middleware)
+			.concat(dashbortApi.middleware)
 			.concat(userSlice.middleware),
 
 	devTools: true,

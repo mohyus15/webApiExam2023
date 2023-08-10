@@ -1,18 +1,17 @@
 const User = require('../models/usersModel.js');
 const jwt = require('jsonwebtoken');
-const secret = 'BESTAPP2023';
+const secret = process.env.SECRET;
 
 const protect = async (req, res, next) => {
-	console.log(req.cookies);
-	let token;
+	const token = req.cookies.jwt;
+	console.log(token);
 
 	if (token) {
 		try {
 			const decoded = jwt.verify(token, secret);
-			console.log(decoded);
 
 			req.user = await User.findById(decoded.userId).select(
-				'_id'
+				'-password'
 			);
 
 			next();
@@ -23,6 +22,7 @@ const protect = async (req, res, next) => {
 		}
 	} else {
 		res.status(401);
+
 		throw new Error('Not authorized, no token');
 	}
 };

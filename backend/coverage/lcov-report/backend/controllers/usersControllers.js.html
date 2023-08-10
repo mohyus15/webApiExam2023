@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.47% </span>
+                <span class="strong">15.85% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/84</span>
+                <span class='fraction'>13/82</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.47% </span>
+                <span class="strong">15.85% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/84</span>
+                <span class='fraction'>13/82</span>
             </div>
         
             
@@ -248,9 +248,7 @@
 <a name='L183'></a><a href='#L183'>183</a>
 <a name='L184'></a><a href='#L184'>184</a>
 <a name='L185'></a><a href='#L185'>185</a>
-<a name='L186'></a><a href='#L186'>186</a>
-<a name='L187'></a><a href='#L187'>187</a>
-<a name='L188'></a><a href='#L188'>188</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L186'></a><a href='#L186'>186</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -259,8 +257,22 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -269,24 +281,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -443,27 +439,17 @@ const {
 	generateToken,
 } = require('../midddelwars/jwtToken.js');
 &nbsp;
-const getAllUsers = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-	const users = <span class="cstat-no" title="statement not covered" >await User.find();</span>
-<span class="cstat-no" title="statement not covered" >	try {</span>
-<span class="cstat-no" title="statement not covered" >		res.status(200).json(users);</span>
-	} catch (error) {
-<span class="cstat-no" title="statement not covered" >		res.status(404).json('you can not get the all users');</span>
-	}
-};
-&nbsp;
 const authUser = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
 	const { email, password } = <span class="cstat-no" title="statement not covered" >req.body;</span>
 	const user = <span class="cstat-no" title="statement not covered" >await User.findOne({ email });</span>
-	const userId = <span class="cstat-no" title="statement not covered" >req.body;</span>
-<span class="cstat-no" title="statement not covered" >	console.log(userId);</span>
+&nbsp;
 	const match = <span class="cstat-no" title="statement not covered" >await bcrypt.compare(</span>
 		password,
 		user.password
 	);
 &nbsp;
 <span class="cstat-no" title="statement not covered" >	if (match) {</span>
-<span class="cstat-no" title="statement not covered" >		generateToken(res, userId);</span>
+<span class="cstat-no" title="statement not covered" >		generateToken(res, user._id.toString());</span>
 <span class="cstat-no" title="statement not covered" >		res.json({</span>
 			_id: user._id,
 			name: user.name,
@@ -476,6 +462,14 @@ const authUser = <span class="fstat-no" title="function not covered" >as</span>y
 	}
 };
 &nbsp;
+const getAllUsers = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+	const users = <span class="cstat-no" title="statement not covered" >await User.find();</span>
+<span class="cstat-no" title="statement not covered" >	try {</span>
+<span class="cstat-no" title="statement not covered" >		res.status(200).json(users);</span>
+	} catch (error) {
+<span class="cstat-no" title="statement not covered" >		res.status(404).json('you can not get the all users');</span>
+	}
+};
 const RegisterUser = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
 	const { name, email, password } = <span class="cstat-no" title="statement not covered" >req.body;</span>
 <span class="cstat-no" title="statement not covered" >	try {</span>
@@ -495,7 +489,7 @@ const RegisterUser = <span class="fstat-no" title="function not covered" >as</sp
 		});
 &nbsp;
 <span class="cstat-no" title="statement not covered" >		if (user) {</span>
-<span class="cstat-no" title="statement not covered" >			generateToken(res, userId);</span>
+<span class="cstat-no" title="statement not covered" >			generateToken(res, user._id.toString());</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >			res.status(201).json({</span>
 				_id: user._id,
@@ -631,7 +625,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-08-05T18:00:07.788Z
+                at 2023-08-06T22:03:37.967Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

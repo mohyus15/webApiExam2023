@@ -1,17 +1,18 @@
 import { Route, Routes } from 'react-router-dom';
-
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navigation from './screens/navigation.js';
 import { Container } from 'react-bootstrap';
-import Products from './compoenents/products.js';
+import Dashbort from './compoenents/dashbort.js';
 import Login from './screens/login.js';
 import Userslist from './admin/userslist.js';
-import ProductListAdmin from './admin/productListAdmin.js';
+
 import UserEdit from './admin/userEdit.js';
 import AdminPrivatRouters from './admin/privateAdminRouter.js';
-import CreateProduct from './admin/createProduct.js';
 import Register from './screens/register.js';
+import PrivatRouters from './private/privateRouters.js';
+import Department from './private/department.js';
+import CreateDeparments from './admin/createDeparments.js';
 
 function App() {
 	return (
@@ -20,24 +21,21 @@ function App() {
 			<main className="py-3">
 				<Container>
 					<Routes>
-						<Route
-							index={true}
-							path="/"
-							element={<Products />}
-						/>
 						<Route path="/login" element={<Login />} />
 						<Route path="register" element={<Register />} />
 
 						<Route path="" element={<AdminPrivatRouters />}>
 							<Route
-								path="/productListAdmin"
-								element={<ProductListAdmin />}
+								path="/createDeparments"
+								element={<CreateDeparments />}
 							/>
 
 							<Route
-								path="createProduct"
-								element={<CreateProduct />}
+								index={true}
+								path="/dashbort"
+								element={<Dashbort />}
 							/>
+
 							<Route
 								path="userslist"
 								element={<Userslist />}
@@ -45,6 +43,12 @@ function App() {
 							<Route
 								path="/userEdit/:id/edit"
 								element={<UserEdit />}
+							/>
+						</Route>
+						<Route path="" element={<PrivatRouters />}>
+							<Route
+								path="/deperment"
+								element={<Department />}
 							/>
 						</Route>
 					</Routes>

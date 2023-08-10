@@ -1,22 +1,21 @@
 const mongoose = require('mongoose');
 
-const productSchema = mongoose.Schema(
+const DashbortSchema = mongoose.Schema(
 	{
 		user: {
-			type: mongoose.Schema.Types.ObjectId,
-			required: true,
-			ref: 'User',
-		},
-		name: {
 			type: String,
 			required: true,
 		},
-		image: {
+		deperment: {
 			type: String,
 			required: true,
 		},
-		brand: {
+		description: {
 			type: String,
+			required: true,
+		},
+		hours: {
+			type: Number,
 			required: true,
 		},
 	},
@@ -25,4 +24,4 @@ const productSchema = mongoose.Schema(
 	}
 );
 
-module.exports = mongoose.model('Product', productSchema);
+module.exports = mongoose.model('Dashbort', DashbortSchema);

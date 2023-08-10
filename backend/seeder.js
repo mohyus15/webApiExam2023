@@ -3,7 +3,7 @@ const { seederProducts } = require('./seedData/product.js');
 
 const { mangoConnect } = require('./utils/database.js');
 const dotenv = require('dotenv').config();
-const Product = require('./models/productModels.js');
+const Product = require('./models/DashbortModels.js');
 const User = require('./models/usersModel.js');
 
 const importData = async () => {

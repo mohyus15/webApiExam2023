@@ -11,42 +11,24 @@ const productRouter = require('./routers/productRouter.js');
 const userRouters = require('./routers/userRouters.js');
 
 const app = express();
-
+app.use(cors());
 app.use(
-	cors({
+	express.json({
 		origin: 'http://localhost:3000',
-		credentials: true,
 	})
 );
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
-
-app.use(morgan('combined'));
 app.use(express.json());
-
-app.use(bodyParser.json());
-
-app.use('/api/products', productRouter);
+app.use(
+	express.static(path.join(__dirname, '..', 'public'))
+);
+app.use(morgan('combined'));
 app.use('/api/users', userRouters);
+app.use('/api/darshbort', productRouter);
 
-if (NODE_ENV === 'production') {
-	app.use(
-		express.static(path.join(__dirname, '/frontend/build'))
+app.get('/*', (req, res) => {
+	res.sendFile(
+		path.join(__dirname, '..', 'public', 'index.html')
 	);
-	app.get('/*', (req, res) => {
-		res.sendFile(
-			path.resolve(
-				__dirname,
-				'frontend',
-				'build',
-				'index.html'
-			)
-		);
-	});
-} else {
-	app.get('/', (req, res) => {
-		res.send('Api is running');
-	});
-}
+});
 
 module.exports = app;

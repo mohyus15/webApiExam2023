@@ -1,11 +1,9 @@
 const {
-	getProducts,
-	getProductsById,
-	createProduct,
-
-	deleteProduct,
-	getTopProducts,
-} = require('../controllers/productController.js');
+	deleteDashbort,
+	getDashborts,
+	createDashbort,
+	updateDashbort,
+} = require('../controllers/DashbortController.js');
 const express = require('express');
 const {
 	admin,
@@ -13,8 +11,8 @@ const {
 } = require('../midddelwars/permission.js');
 
 const productRouter = express.Router();
-productRouter.post('/', createProduct);
-productRouter.get('/', getProducts);
-productRouter.get('/:id', getProductsById);
-productRouter.delete('/:id', deleteProduct);
+productRouter.post('/', createDashbort);
+productRouter.get('/', getDashborts);
+productRouter.delete('/:id', deleteDashbort);
+productRouter.put('/id', updateDashbort);
 module.exports = productRouter;

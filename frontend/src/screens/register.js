@@ -34,12 +34,12 @@ const Register = () => {
 
 	useEffect(() => {
 		if (userInfo) {
-			navigate('/login');
 			navigate(redirect);
 		}
 	}, [navigate, redirect, userInfo]);
 
 	const submitHandler = async e => {
+		console.log(dispatch);
 		e.preventDefault();
 		if (password !== conformpassword) {
 			toast.error('Passwords do not match');

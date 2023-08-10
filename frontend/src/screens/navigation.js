@@ -30,7 +30,7 @@ function Navigation() {
 	return (
 		<Navbar bg="light" expand="md">
 			<Container>
-				<Navbar.Brand href="/">web name</Navbar.Brand>
+				<h2>Employee Management systems</h2>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="ms-auto">
@@ -39,9 +39,11 @@ function Navigation() {
 								className="ml-2"
 								title={userInfo.name}
 								id="username">
-								<Nav.Link href="/profile">profile</Nav.Link>
 								<Nav.Link onClick={logoutHandler}>
 									logout
+								</Nav.Link>
+								<Nav.Link href="/deperment">
+									department
 								</Nav.Link>
 							</NavDropdown>
 						) : (
@@ -52,12 +54,12 @@ function Navigation() {
 						)}
 						{userInfo && userInfo.isAdmin && (
 							<NavDropdown title="Lists" id="adminMenu">
-								<Nav.Link href="/userslist">
-									userlist
+								<Nav.Link href="/dashbort">
+									dashbort
 								</Nav.Link>
 
-								<Nav.Link href="/productListAdmin">
-									productlist
+								<Nav.Link href="/userslist">
+									userlist
 								</Nav.Link>
 							</NavDropdown>
 						)}

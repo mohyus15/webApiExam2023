@@ -40,6 +40,7 @@ const Userslist = () => {
 								<th>id</th>
 								<th>name</th>
 								<th>email</th>
+								<th>deperment</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -50,6 +51,7 @@ const Userslist = () => {
 										<td>{user._id}</td>
 										<td>{user.name}</td>
 										<td>{user.email}</td>
+										<td>{user.deperment}</td>
 										<td>
 											{user.isAdmin ? (
 												<FaCheck

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="spinner-border"
+  role="status"
+  style={
+    Object {
+      "display": "block",
+      "height": 100,
+      "margin": "auto",
+      "width": 100,
+    }
+  }
+/>
+`;

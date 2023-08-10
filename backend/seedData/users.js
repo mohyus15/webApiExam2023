@@ -4,6 +4,7 @@ const users = [
 		name: 'admin',
 		email: 'admin@hotmail.com',
 		password: bcrypt.hashSync('123456', 10),
+		deperment: 'Manager',
 		isAdmin: true,
 	},
 	{
@@ -11,11 +12,13 @@ const users = [
 		email: 'sensur@hotmail.com',
 		password: bcrypt.hashSync('123456', 10),
 		isAdmin: true,
+		deperment: 'Manager',
 	},
 	{
 		name: 'Mo',
 		email: 'Mo@hotmail.com',
 		password: bcrypt.hashSync('123456', 10),
+		deperment: 'finance',
 		isAdmin: false,
 	},
 	{
@@ -23,6 +26,21 @@ const users = [
 		email: 'Ola@hotmail.com',
 		password: bcrypt.hashSync('123456', 10),
 		isAdmin: false,
+		deperment: 'finance',
+	},
+	{
+		name: 'Erik',
+		email: 'Erik@hotmail.com',
+		password: bcrypt.hashSync('123456', 10),
+		deperment: 'finance',
+		isAdmin: false,
+	},
+	{
+		name: 'Row',
+		email: 'Row@hotmail.com',
+		password: bcrypt.hashSync('123456', 10),
+		isAdmin: false,
+		deperment: 'accounting',
 	},
 ];
 

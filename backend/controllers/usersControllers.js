@@ -4,27 +4,17 @@ const {
 	generateToken,
 } = require('../midddelwars/jwtToken.js');
 
-const getAllUsers = async (req, res) => {
-	const users = await User.find();
-	try {
-		res.status(200).json(users);
-	} catch (error) {
-		res.status(404).json('you can not get the all users');
-	}
-};
-
 const authUser = async (req, res) => {
 	const { email, password } = req.body;
 	const user = await User.findOne({ email });
-	const userId = req.body;
-	console.log(userId);
+
 	const match = await bcrypt.compare(
 		password,
 		user.password
 	);
 
 	if (match) {
-		generateToken(res, userId);
+		generateToken(res, user._id.toString());
 		res.json({
 			_id: user._id,
 			name: user.name,
@@ -37,6 +27,14 @@ const authUser = async (req, res) => {
 	}
 };
 
+const getAllUsers = async (req, res) => {
+	const users = await User.find();
+	try {
+		res.status(200).json(users);
+	} catch (error) {
+		res.status(404).json('you can not get the all users');
+	}
+};
 const RegisterUser = async (req, res) => {
 	const { name, email, password } = req.body;
 	try {
@@ -56,7 +54,7 @@ const RegisterUser = async (req, res) => {
 		});
 
 		if (user) {
-			generateToken(res, userId);
+			generateToken(res, user._id.toString());
 
 			res.status(201).json({
 				_id: user._id,
