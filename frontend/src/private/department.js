@@ -64,6 +64,7 @@ const Department = () => {
 												onClick={sendeToDatabase}>
 												log hours
 											</Button>
+											<p className="mt-4">Total hours:</p>
 										</Card>
 									) : (
 										''
