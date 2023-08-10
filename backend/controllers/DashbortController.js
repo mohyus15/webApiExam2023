@@ -1,4 +1,6 @@
 const Dashbort = require('../models/DashbortModels.js');
+const Hours = require('../models/DashbortModels.js');
+
 const createDashbort = async (req, res) => {
 	const { deperment, user, description, hours } = req.body;
 
@@ -9,6 +11,15 @@ const createDashbort = async (req, res) => {
 			description,
 			hours,
 		});
+		res.status(201).json(DashbortCreated);
+	} catch (error) {
+		res.status(400).json({ error: error.message });
+	}
+};
+const createHourse = async (req, res) => {
+	const { hours } = req.body;
+	try {
+		const housers = await Hours.create({ hours });
 		res.status(201).json(DashbortCreated);
 	} catch (error) {
 		res.status(400).json({ error: error.message });
@@ -48,4 +59,5 @@ module.exports = {
 	updateDashbort,
 	createDashbort,
 	getDashborts,
+	createHourse,
 };

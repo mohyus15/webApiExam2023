@@ -1,22 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	Col,
 	Row,
+	Form,
 	Container,
 	Card,
 	Button,
 } from 'react-bootstrap';
-import { useGetDashbortQuery } from '../context/dashbortApi.js';
+import {
+	useCreateHoursMutation,
+	useGetDashbortQuery,
+} from '../context/dashbortApi.js';
 import { useSelector } from 'react-redux';
-
-const sendeToDatabase = () => {
-	console.log('send to database');
-};
+import { toast } from 'react-toastify';
 
 const Department = () => {
+	const [hours, setHours] = useState();
 	const { data: products } = useGetDashbortQuery();
+	const [createHours, { isLoading }] =
+		useCreateHoursMutation();
 	const { userInfo } = useSelector(state => state.auth);
 	const currentUser = userInfo.name;
+	const sendeToDatabase = async () => {
+		await createHours(hours).unwrap();
+		toast.success('you have log hours in ' + hours);
+	};
 
 	return (
 		<>
@@ -42,11 +50,28 @@ const Department = () => {
 												<h2>user</h2>
 												<p>{pro.user}</p>
 											</Card.Body>
+											<Form.Group className="InputField">
+												<Form.Label>user</Form.Label>
+												<Form.Control
+													type="number"
+													as="select"
+													ControlId="hours"
+													value={hours}
+													name={hours}
+													onChange={event =>
+														setHours(event.target.value)
+													}>
+													{products &&
+														products.map(user => (
+															<option key={user._id}>
+																{user.hours}
+															</option>
+														))}
+												</Form.Control>
+											</Form.Group>
 											<Button
 												className="mt-3"
-												onClick={() =>
-													sendeToDatabase(pro._id)
-												}>
+												onClick={sendeToDatabase}>
 												log hours
 											</Button>
 										</Card>

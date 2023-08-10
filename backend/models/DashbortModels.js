@@ -1,4 +1,16 @@
 const mongoose = require('mongoose');
+const hoursSchema = mongoose.Schema(
+	{
+		hours: {
+			type: Number,
+			required: true,
+		},
+	},
+	{
+		timestamps: true,
+	}
+);
+module.exports = mongoose.model('hours', hoursSchema);
 
 const DashbortSchema = mongoose.Schema(
 	{

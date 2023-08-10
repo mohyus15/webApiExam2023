@@ -10,6 +10,7 @@ import Loader from '../compoenents/loader.js';
 import { useNavigate } from 'react-router-dom';
 import { useGetUsersQuery } from '../context/usersSlice.js';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 function CreateDeparments() {
 	const { data: users } = useGetUsersQuery();
@@ -33,6 +34,7 @@ function CreateDeparments() {
 		console.log(obj);
 		try {
 			let result = await createDashbort(obj).unwrap();
+			toast.success('you have log hours in ' + hours);
 			navigate('/dashbort');
 		} catch (error) {
 			console.log(error);

@@ -7,7 +7,10 @@ const cookieParser = require('cookie-parser');
 const NODE_ENV = process.env.NODE;
 
 //manger roles
-const productRouter = require('./routers/productRouter.js');
+const {
+	productRouter,
+	hoursRouter,
+} = require('./routers/dashbordRouter.js');
 const userRouters = require('./routers/userRouters.js');
 
 const app = express();
@@ -24,6 +27,7 @@ app.use(
 app.use(morgan('combined'));
 app.use('/api/users', userRouters);
 app.use('/api/darshbort', productRouter);
+app.use('/api/hours', hoursRouter);
 
 app.get('/*', (req, res) => {
 	res.sendFile(
