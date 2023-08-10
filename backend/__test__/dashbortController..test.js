@@ -14,7 +14,13 @@ describe('Test POST /dashbort', () => {
 			await mangoDidsconnect();
 		});
 
-	const completeData = {};
+	const completeData = {
+		user: 'Ali',
+		deperment: 'accouting',
+		description:
+			'kake kan du lage hjemme eller kan du ta en tur min butikk i Oslo',
+		hours: 20,
+	};
 
 	const DataWithInvalidDate = {
 		user: 'Ali',
@@ -23,13 +29,13 @@ describe('Test POST /dashbort', () => {
 			'kake kan du lage hjemme eller kan du ta en tur min butikk i Oslo',
 	};
 	test('It should respond with 201 created', async () => {
-		await request(app).post('/api/darshbort').send({
-			user: 'Ali',
-			deperment: 'accouting',
-			description:
-				'kake kan du lage hjemme eller kan du ta en tur min butikk i Oslo',
-			hours: 20,
-		});
+		await request(app)
+			.post('/api/darshbort')
+			.send(completeData);
 		expect(201);
 	});
+});
+
+describe('posting', () => {
+	it('testing', () => {});
 });

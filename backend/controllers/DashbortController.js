@@ -9,7 +9,6 @@ const createDashbort = async (req, res) => {
 			deperment,
 			user,
 			description,
-			hours,
 		});
 		res.status(201).json(DashbortCreated);
 	} catch (error) {

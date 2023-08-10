@@ -45,29 +45,19 @@ const Department = () => {
 												<Col>{pro.deperment}</Col>
 												<h4>description</h4>
 												<p> {pro.description}</p>
-												<h4>hours</h4>
-												{pro.hours} hours
-												<h2>user</h2>
 												<p>{pro.user}</p>
 											</Card.Body>
 											<Form.Group className="InputField">
 												<Form.Label>user</Form.Label>
 												<Form.Control
 													type="number"
-													as="select"
 													ControlId="hours"
+													placeholder="hours"
 													value={hours}
 													name={hours}
-													onChange={event =>
-														setHours(event.target.value)
-													}>
-													{products &&
-														products.map(user => (
-															<option key={user._id}>
-																{user.hours}
-															</option>
-														))}
-												</Form.Control>
+													onChange={e =>
+														setHours(e.target.value)
+													}></Form.Control>
 											</Form.Group>
 											<Button
 												className="mt-3"

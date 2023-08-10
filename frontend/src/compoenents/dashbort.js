@@ -52,8 +52,6 @@ const Products = () => {
 										<Col>{pro.deperment}</Col>
 										<h4>description</h4>
 										<p style={style}> {pro.description}</p>
-										<h4>hours</h4>
-										{pro.hours} hours
 										<h4>user</h4>
 										<p>{pro.user}</p>
 									</Card.Body>

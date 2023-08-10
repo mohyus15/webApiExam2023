@@ -91,17 +91,6 @@ function CreateDeparments() {
 								}></Form.Control>
 						</Form.Group>
 
-						<Form.Group className="my-3 ">
-							<label>housers</label>
-							<Form.Control
-								ControlId="hoursers"
-								type="number"
-								name="hourses"
-								value={hours}
-								onChange={e =>
-									setHours(e.target.value)
-								}></Form.Control>
-						</Form.Group>
 						<Button onClick={onSubmitHandler}>
 							create
 						</Button>
